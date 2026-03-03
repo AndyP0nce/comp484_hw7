@@ -1,3 +1,8 @@
+/* HW7 step 5: box model fix - padding/border included in width, not added on top */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* Color Palette
    #ffffff  - White (background)
    #1a1a2e  - Dark Navy (header text)
@@ -27,11 +32,13 @@ h1 {
     margin: 0 0 6px 0;
 }
 
+/* HW7 step 3c: margin-top 0 removes extra space at top of each section */
 h2 {
     font-family: 'Orbitron', monospace;
     font-size: 18px;
     font-weight: 700;
     color: #4a4e69;
+    margin-top: 0;
 }
 
 h3 {
@@ -58,23 +65,84 @@ a {
 }
 
 img {
-    width: 180px;
-    height: 180px;
     border-radius: 50%;
     border: 3px solid #c9ada7;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
 
+/* HW7 step 1b and 2d: content-wrap centers content with max-width, reused across all sections */
+.content-wrap {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 40px;
+    overflow: hidden;
+}
+
+/* HW7 step 6d: column-narrow floats left for image/meta side */
+.column-narrow {
+    width: 25%;
+    float: left;
+    padding-right: 3%;
+    min-height: 175px;
+}
+
+/* HW7 step 6e: column-wide floats left for description side */
+.column-wide {
+    width: 75%;
+    float: left;
+    min-height: 225px;
+}
+
+
+
+/* HW7 step 4b+4c: profile-img sets circular shape. float+margin handled by column-narrow */
+.profile-img {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 3px solid #c9ada7;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
 /* Header & Footer
 ------------------------------------*/
+
+/* HW7 step 4d: removes margin between name and tagline in header */
+header h1,
+header h2 {
+    margin: 0;
+}
+
+/* override float columns in header - use flexbox so pfp stays a fixed size */
+header .column-narrow {
+    width: auto;
+    float: none;
+    padding-right: 0;
+    margin-right: 40px;
+    min-height: auto;
+    flex-shrink: 0;
+}
+
+header .column-wide {
+    width: auto;
+    float: none;
+    min-height: auto;
+    flex: 1;
+}
+
+header .content-wrap {
+    display: flex;
+    align-items: center;
+}
+
 header {
     background-color: #1a1a2e;
     padding: 40px 60px;
     display: flex;
     align-items: center;
-    gap: 40px;
 }
 
 header .header-text h2 {
@@ -89,9 +157,10 @@ header .header-text p {
     margin: 0;
 }
 
+/* HW7 step 3e: text-align center so all footer child elements are centered */
 footer {
     background-color: #1a1a2e;
-    padding: 30px 60px;
+    padding: 0;
     text-align: center;
 }
 
@@ -107,40 +176,46 @@ footer a {
 }
 
 
+
+
+/* HW7 step 3g: targets only links inside contact-info, adds padding and inline-block */
+.contact-info a {
+    padding: 10px;
+    display: inline-block;
+}
+
 /* Work Experience
 ------------------------------------*/
 section:nth-of-type(1) {
     background-color: #ffffff;
-    padding: 30px 40px;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1100px;
 }
 
 /* Projects */
 section:nth-of-type(2) {
     background-color: #f2e9e4;
-    padding: 30px 40px;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1100px;
 }
 
 /* Education */
 section:nth-of-type(3) {
     background-color: #ffffff;
-    padding: 30px 40px;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1100px;
 }
 
 
 /* Job alternating rows
 ------------------------------------*/
 .job {
-    padding: 16px 20px;
+    padding: 16px;
     border-top: 1px solid #c9ada750;
+    overflow: hidden;
 }
 
 .job_light {
