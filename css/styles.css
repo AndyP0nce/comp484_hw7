@@ -1,4 +1,5 @@
-/* HW7 step 5: box model fix - padding/border included in width, not added on top */
+/* Step 5: Box Model Fix — applied globally to every element
+------------------------------------*/
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -20,6 +21,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     line-height: 1.8;
+    /* Step 3d: margin set to 0 to remove the default white border around the page */
     margin: 0;
     padding: 0;
 }
@@ -32,7 +34,7 @@ h1 {
     margin: 0 0 6px 0;
 }
 
-/* HW7 step 3c: margin-top 0 removes extra space at top of each section */
+/* Step 3c: margin-top set to 0 to remove extra space above h2, keeping padding consistent */
 h2 {
     font-family: 'Orbitron', monospace;
     font-size: 18px;
@@ -44,7 +46,7 @@ h2 {
 h3 {
     font-family: 'Orbitron', monospace;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     color: #4a4e69;
     border-left: 3px solid #4a4e69;
     padding-left: 10px;
@@ -64,85 +66,31 @@ a {
     text-decoration: none;
 }
 
-img {
-    border-radius: 50%;
-    border: 3px solid #c9ada7;
-    object-fit: cover;
-}
 
-
-/* HW7 step 1b and 2d: content-wrap centers content with max-width, reused across all sections */
+/* Content Wrap
+------------------------------------*/
+/* Step 1b: content-wrap added to global section for reuse across all page sections */
+/* Step 1d: switched from width to max-width for flexibility */
+/* Step 3a: padding: 50px added so all sections share consistent spacing */
+/* Step 4f: overflow: hidden added to clear floated children inside the wrapper */
 .content-wrap {
-    max-width: 1050px;
+    max-width: 950px;
     margin: 0 auto;
-    padding: 40px;
+    padding: 50px;
     overflow: hidden;
 }
 
-/* HW7 step 6d: column-narrow floats left for image/meta side */
-.column-narrow {
-    width: 25%;
-    float: left;
-    padding-right: 3%;
-    min-height: 175px;
-}
-
-/* HW7 step 6e: column-wide floats left for description side */
-.column-wide {
-    width: 75%;
-    float: left;
-    min-height: 225px;
-}
-
-
-
-/* HW7 step 4b+4c: profile-img sets circular shape. float+margin handled by column-narrow */
-.profile-img {
-    width: 190px;
-    height: 190px;
-    border-radius: 50%;
-    border: 3px solid #c9ada7;
-    object-fit: cover;
-    display: block;
-    flex-shrink: 0;
-}
 
 /* Header & Footer
 ------------------------------------*/
+header {
+    background-color: #1a1a2e;
+}
 
-/* HW7 step 4d: removes margin between name and tagline in header */
+/* Step 4d: margin: 0 on header h1 and h2 to tighten up spacing between name and tagline */
 header h1,
 header h2 {
     margin: 0;
-}
-
-/* override float columns in header - use flexbox so pfp stays a fixed size */
-header .column-narrow {
-    width: auto;
-    float: none;
-    padding-right: 0;
-    margin-right: 40px;
-    min-height: auto;
-    flex-shrink: 0;
-}
-
-header .column-wide {
-    width: auto;
-    float: none;
-    min-height: auto;
-    flex: 1;
-}
-
-header .content-wrap {
-    display: flex;
-    align-items: center;
-}
-
-header {
-    background-color: #1a1a2e;
-    padding: 40px 60px;
-    display: flex;
-    align-items: center;
 }
 
 header .header-text h2 {
@@ -157,10 +105,9 @@ header .header-text p {
     margin: 0;
 }
 
-/* HW7 step 3e: text-align center so all footer child elements are centered */
+/* Step 3e: text-align: center added so footer content and child elements are centered */
 footer {
     background-color: #1a1a2e;
-    padding: 0;
     text-align: center;
 }
 
@@ -175,14 +122,13 @@ footer a {
     padding: 0 18px;
 }
 
-
-
-
-/* HW7 step 3g: targets only links inside contact-info, adds padding and inline-block */
+/* Step 3g: descendant selector targets only links inside .contact-info
+            padding and inline-block allow side-by-side layout with proper spacing */
 .contact-info a {
     padding: 10px;
     display: inline-block;
 }
+
 
 /* Work Experience
 ------------------------------------*/
@@ -190,7 +136,7 @@ section:nth-of-type(1) {
     background-color: #ffffff;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 1100px;
+    max-width: 800px;
 }
 
 /* Projects */
@@ -198,7 +144,7 @@ section:nth-of-type(2) {
     background-color: #f2e9e4;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 1100px;
+    max-width: 800px;
 }
 
 /* Education */
@@ -206,14 +152,14 @@ section:nth-of-type(3) {
     background-color: #ffffff;
     border: 1px solid #c9ada7;
     margin: 20px auto;
-    max-width: 1100px;
+    max-width: 800px;
 }
 
 
 /* Job alternating rows
 ------------------------------------*/
 .job {
-    padding: 16px;
+    padding: 16px 20px;
     border-top: 1px solid #c9ada750;
     overflow: hidden;
 }
@@ -227,7 +173,39 @@ section:nth-of-type(3) {
 }
 
 
-/* animation
+/* Profile Image
+------------------------------------*/
+/* Step 4b: profile-img class added to target only the header image */
+/* Step 4c: border-radius: 50% makes the image circular */
+/* Step 4f: width, float, and margin-right removed from here; now handled by .column-narrow */
+.profile-img {
+    border-radius: 50%;
+    width: 200px;
+    object-fit: cover;
+}
+
+
+/* Columns
+------------------------------------*/
+/* Step 6a: reusable column classes for two-column layout in header and work sections */
+/* Step 6d: column-narrow styles — width 30%, float left, padding-right, min-height */
+/* Note: padding-right changed from 3% to 1% for custom spacing — per student preference */
+.column-narrow {
+    width: 30%;
+    float: left;
+    padding-right: 1%;
+    min-height: 175px;
+}
+
+/* Step 6e: column-wide styles — width 70%, float left, min-height */
+.column-wide {
+    width: 70%;
+    float: left;
+    min-height: 225px;
+}
+
+
+/* Animation
 ------------------------------------*/
 .slide_left {
     opacity: 0;
