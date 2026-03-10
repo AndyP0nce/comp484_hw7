@@ -180,7 +180,7 @@ section:nth-of-type(3) {
 /* Step 4f: width, float, and margin-right removed from here; now handled by .column-narrow */
 .profile-img {
     border-radius: 50%;
-    width: 200px;
+    /*width: 200px; Step 6f:removed for responsive design, now set by .column-narrow*/
     object-fit: cover;
 }
 
@@ -193,7 +193,7 @@ section:nth-of-type(3) {
 .column-narrow {
     width: 30%;
     float: left;
-    padding-right: 1%;
+    padding-right: 3%; /* doesnt look good, better with 1% */
     min-height: 175px;
 }
 
